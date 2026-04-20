@@ -1,9 +1,80 @@
 <!DOCTYPE html>
+<html lang="it">
 <head>
-    <title>IL_mio_sito</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina che fa cose</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; transition: background 0.5s; }
+        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: inline-block; max-width: 400px; }
+        button { padding: 10px 20px; cursor: pointer; border: none; border-radius: 5px; background: #007bff; color: white; margin: 5px; }
+        button:hover { background: #0056b3; }
+        #timer { font-size: 2em; margin: 20px 0; }
+    </style>
 </head>
 <body>
-    <h1>Benvenuti nel mio sito</h1>
-    <p>Questo è un esempio di HTML semplice.</p>
+
+    <div class="card">
+        <h1>Una pagina che fa cose 🚀</h1>
+        
+        <!-- 1. Cambia Colore -->
+        <p>Cambia l'umore della pagina:</p>
+        <button onclick="cambiaColore()">Cambia Colore</button>
+
+        <hr>
+
+        <!-- 2. Generatore di Citazioni -->
+        <p id="citazione">"Clicca il tasto per una perla di saggezza."</p>
+        <button onclick="nuovaCitazione()">Nuova Citazione</button>
+
+        <hr>
+
+        <!-- 3. Timer Rapido -->
+        <div id="timer">00:00</div>
+        <button onclick="startTimer()">Avvia Timer (1m)</button>
+        <button onclick="resetTimer()">Reset</button>
+    </div>
+
+    <script>
+        // Funzione Colore
+        function cambiaColore() {
+            const colori = ['#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#bdb2ff'];
+            document.body.style.backgroundColor = colori[Math.floor(Math.random() * colori.length)];
+        }
+
+        // Funzione Citazioni
+        function nuovaCitazione() {
+            const citazioni = [
+                "L'unico modo per fare un ottimo lavoro è amare quello che fai.",
+                "Non conta quanto vai piano, l'importante è che non ti fermi.",
+                "Sii il cambiamento che vuoi vedere nel mondo.",
+                "La creatività è l'intelligenza che si diverte."
+            ];
+            document.getElementById('citazione').innerText = citazioni[Math.floor(Math.random() * citazioni.length)];
+        }
+
+        // Funzione Timer
+        let tempo;
+        let secondi = 0;
+        function startTimer() {
+            clearInterval(tempo);
+            secondi = 60;
+            tempo = setInterval(() => {
+                if(secondi <= 0) {
+                    clearInterval(tempo);
+                    alert("Tempo scaduto!");
+                } else {
+                    secondi--;
+                    let m = Math.floor(secondi / 60);
+                    let s = secondi % 60;
+                    document.getElementById('timer').innerText = ${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')};
+                }
+            }, 1000);
+        }
+        function resetTimer() {
+            clearInterval(tempo);
+            document.getElementById('timer').innerText = "00:00";
+        }
+    </script>
 </body>
 </html>
