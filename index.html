@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filosite</title>
     <style>
-        /* Aggiunta transizione fluida per il cambio colore */
         body { 
             font-family: sans-serif; 
             text-align: center; 
@@ -27,34 +26,24 @@
     </style>
 </head>
 <body>
-
     <div class="card">
         <h1>Questo è solo l'inizio 🚀</h1>
-        
         <p>Cambia l'umore della pagina:</p>
         <button onclick="cambiaColore()">Cambia Colore</button>
-
         <hr>
-
         <p id="citazione">"Clicca il tasto per una perla di saggezza."</p>
         <button onclick="nuovaCitazione()">Nuova Citazione</button>
-
         <hr>
-
         <div id="timer">00:00</div>
         <button onclick="startTimer()">Avvia Timer (1m)</button>
         <button onclick="resetTimer()">Reset</button>
     </div>
-
     <script>
-        // Funzione Colore - Ora cambia veramente lo sfondo del body
         function cambiaColore() {
             const colori = ['#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#bdb2ff', '#ffc6ff', '#fffffc'];
             const coloreScelto = colori[Math.floor(Math.random() * colori.length)];
             document.body.style.backgroundColor = coloreScelto;
         }
-
-        // Funzione Citazioni
         function nuovaCitazione() {
             const citazioni = [
                 "Lascia che il giovane, nella disperazione, vada a caccia. Se uccide l'elefante, la sua poverta finisce. Se l'elefante uccide lui, la sua poverta finisce.",
@@ -64,11 +53,8 @@
             ];
             document.getElementById('citazione').innerText = citazioni[Math.floor(Math.random() * citazioni.length)];
         }
-
-        // Funzione Timer - Corretta con i backtick ``
         let intervallo;
         let secondi = 0;
-
         function startTimer() {
             clearInterval(intervallo);
             secondi = 60;
@@ -80,7 +66,6 @@
                     secondi--;
                     let m = Math.floor(secondi / 60);
                     let s = secondi % 60;
-                    // Corretto: ora usa i backtick per inserire le variabili nella stringa
                     document.getElementById('timer').innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
                 }
             }, 1000);
